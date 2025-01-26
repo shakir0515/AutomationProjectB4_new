@@ -2,6 +2,7 @@ package io.loop.test.utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -14,8 +15,11 @@ public class WebDriverUtil {
      */
 
     public static WebDriver getDriver(String browserType) {
+        ChromeOptions options = new ChromeOptions();
         if (browserType.equalsIgnoreCase("chrome")) {
-            return new ChromeDriver();
+            options.addArguments("--start-maximized");
+            options.addArguments("--incognito");
+            return new ChromeDriver(options);
         } else if (browserType.equalsIgnoreCase("firefox")) {
             return new FirefoxDriver();
         } else if (browserType.equalsIgnoreCase("safari")) {
